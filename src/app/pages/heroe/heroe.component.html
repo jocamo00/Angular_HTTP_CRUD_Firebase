@@ -1,1 +1,53 @@
-<p>heroe works!</p>
+<h1>Héroe <span>Nombre del Héroe</span></h1>
+<hr>
+
+<div class="row text-right">
+  <div class="col">
+    <button class="btn btn-danger" routerLink="/heroes">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+      Regresar
+    </button>
+  </div>
+</div>
+
+<div class="row animated fadeIn">
+  <div class="col">
+    <form>
+      <div class="form-group">
+        <label>Firebase ID</label>
+        <input type="text" class="form-control" disabled="disebled" placeholder="Firebase ID">
+        <small class="form-text text-muted">Este campo es autogenerado</small>
+      </div>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" class="form-control" disabled="disebled" placeholder="Nombre del héroe" required>
+      </div>
+      <div class="form-group">
+        <label>Poder</label>
+        <input type="text" class="form-control" disabled="disebled" placeholder="Poder del héroe">
+      </div>
+      <div class="form-group">
+        <label>Estado</label>
+        <br>
+        <button class="btn btn-outline-success w-50" type="button">
+          <fa-icon [icon]="faSmileWink"></fa-icon>
+          Vivo
+        </button>
+        <button class="btn btn-outline-danger w-50" type="button">
+          <fa-icon [icon]="faDizzy"></fa-icon>
+          Muerto
+        </button>
+      </div>
+      <hr>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary w-25">
+          <fa-icon [icon]="faSave"></fa-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
