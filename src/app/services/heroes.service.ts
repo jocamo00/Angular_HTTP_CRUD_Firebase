@@ -22,4 +22,18 @@ export class HeroesService {
         })
       );
   }
+
+  actualizarHeroe( heroe: HeroeModel ) {
+    // Esto es porque necesito mandar el heroe sin el id
+    // Creo una copia de heroe con todos sus atributos
+    const heroeTemp = {
+      ...heroe
+    };
+
+    // Le borra el id
+    delete heroeTemp.id;
+
+    // Le pasamos la url, el id del heroe a actualizar y el objeto que queremos actualizar que es el heroe
+    return this.http.put(`${ this.url }/heroes/${ heroe.id }.json`, heroeTemp);
+  }
 }

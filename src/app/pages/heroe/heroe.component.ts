@@ -30,10 +30,19 @@ export class HeroeComponent implements OnInit {
       return;
     }
 
-    this.heroesService.crearHeroe( this.heroe )
+    // Si el id existe actualizo el heroe y si no existe creo el heroe
+    if ( this.heroe.id ) {
+      this.heroesService.actualizarHeroe( this.heroe )
       .subscribe( resp => {
         console.log( resp );
       });
+
+    } else {
+      this.heroesService.crearHeroe( this.heroe )
+      .subscribe( resp => {
+        console.log( resp );
+      });
+    }
   }
 
 }
