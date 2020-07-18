@@ -3,6 +3,8 @@ import { faArrowLeft, faSmileWink, faDizzy, faSave } from '@fortawesome/free-sol
 import { HeroeModel } from 'src/app/models/heroe.model';
 import { NgForm } from '@angular/forms';
 import { HeroesService } from 'src/app/services/heroes.service';
+import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-heroe',
@@ -30,19 +32,32 @@ export class HeroeComponent implements OnInit {
       return;
     }
 
+    // Alert al guardar heroe
+    Swal.fire({
+      title: 'Espere',
+      text: 'Guardando información',
+      icon: 'info',
+      confirmButtonText: 'false'
+    });
+    Swal.showLoading();
+
+    let peticion: Observable<any>;
+
     // Si el id existe actualizo el heroe y si no existe creo el heroe
     if ( this.heroe.id ) {
-      this.heroesService.actualizarHeroe( this.heroe )
-      .subscribe( resp => {
-        console.log( resp );
-      });
+      peticion = this.heroesService.actualizarHeroe( this.heroe );
 
     } else {
-      this.heroesService.crearHeroe( this.heroe )
-      .subscribe( resp => {
-        console.log( resp );
-      });
+      peticion = this.heroesService.crearHeroe( this.heroe );
     }
+
+    peticion.subscribe( resp => {
+      Swal.fire({
+        title: this.heroe.nombre,
+        text: 'Se actualizó correctamente',
+        icon: 'success'
+      });
+    });
   }
 
 }
