@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus, faSyncAlt, faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { HeroesService } from 'src/app/services/heroes.service';
+import { HeroeModel } from 'src/app/models/heroe.model';
+
 
 @Component({
   selector: 'app-heroes',
@@ -12,9 +15,18 @@ export class HeroesComponent implements OnInit {
   faSyncAlt = faSyncAlt;
   faExclamation = faExclamation;
 
-  constructor() { }
+  heroes: HeroeModel[] = [];
+
+
+  constructor( private heroesService: HeroesService ) { }
 
   ngOnInit(): void {
+    this.heroesService.getHeroes()
+      .subscribe( resp => {
+        console.log(resp);
+        this.heroes = resp;
+      });
   }
+
 
 }
