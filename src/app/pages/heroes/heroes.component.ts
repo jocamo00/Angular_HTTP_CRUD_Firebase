@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlus, faSyncAlt, faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSyncAlt, faExclamation, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { HeroesService } from 'src/app/services/heroes.service';
 import { HeroeModel } from 'src/app/models/heroe.model';
 
@@ -14,6 +14,8 @@ export class HeroesComponent implements OnInit {
   faPlus = faPlus;
   faSyncAlt = faSyncAlt;
   faExclamation = faExclamation;
+  faPen = faPen;
+  faTrash = faTrash;
 
   heroes: HeroeModel[] = [];
 
@@ -23,7 +25,6 @@ export class HeroesComponent implements OnInit {
   ngOnInit(): void {
     this.heroesService.getHeroes()
       .subscribe( resp => {
-        console.log(resp);
         this.heroes = resp;
       });
   }
