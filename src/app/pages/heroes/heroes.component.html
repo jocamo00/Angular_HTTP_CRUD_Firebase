@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<table class="table mt-5">
+<table *ngIf="!cargando && heroes.length > 0" class="table mt-5 animated fadeIn"> <!-- Mientras no este cargando muestra la tabla-->
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -45,7 +45,7 @@
 
 
 <!--  -->
-<div class="alert alert-warning text-center mt-3">
+<div *ngIf="!cargando && heroes.length === 0"class="alert alert-warning text-center mt-3 animated fadeIn">
   <h4 class="alert-heading">No hay registros</h4>
   <p>
     <fa-icon [icon]="faExclamation"></fa-icon>
@@ -54,7 +54,7 @@
 
 
 <!-- Loading -->
-<div class="alert alert-info text-center mt-3">
+<div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn">
   <h4 class="alert-heading">Cargando</h4>
   <p>
     <fa-icon [icon]="faSyncAlt"></fa-icon>

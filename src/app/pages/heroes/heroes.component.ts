@@ -19,14 +19,16 @@ export class HeroesComponent implements OnInit {
   faTrash = faTrash;
 
   heroes: HeroeModel[] = [];
-
+  cargando = false;
 
   constructor( private heroesService: HeroesService ) { }
 
   ngOnInit(): void {
+    this.cargando = true;
     this.heroesService.getHeroes()
       .subscribe( resp => {
         this.heroes = resp;
+        this.cargando = false;
       });
   }
 
