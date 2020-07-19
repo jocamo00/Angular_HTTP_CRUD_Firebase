@@ -24,6 +24,7 @@ export class HeroesService {
       );
   }
 
+
   actualizarHeroe( heroe: HeroeModel ) {
     // Esto es porque necesito mandar el heroe sin el id
     // Creo una copia de heroe con todos sus atributos
@@ -38,9 +39,16 @@ export class HeroesService {
     return this.http.put(`${ this.url }/heroes/${ heroe.id }.json`, heroeTemp);
   }
 
+
+  borrarHeroe( id: string ){
+    return this.http.delete(`${ this.url }/heroes/${ id }.json`);
+  }
+
+
   getHeroe( id: string ) {
     return this.http.get(`${ this.url }/heroes/${ id }.json`);
   }
+
 
   getHeroes() {
     return this.http.get(`${ this.url }/heroes.json`)
@@ -48,6 +56,7 @@ export class HeroesService {
       map( this.crearArreglo )
     );
   }
+
 
   private crearArreglo( heroesObj: object ) {
 
